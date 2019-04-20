@@ -59,6 +59,12 @@ func (self *DataSheet) exportColumnMajor(file *File, dataModel *model.DataModel,
 			break
 		}
 
+		for i:=0; i < ReserveTrimLevel; i++ {
+			if strings.Index(fieldDef.Name, "#") == 0 {
+				fieldDef.Name = fieldDef.Name[1:]
+			}
+		}
+		
 		// #开头表示注释, 跳过
 		if strings.Index(fieldDef.Name, "#") == 0 {
 			continue

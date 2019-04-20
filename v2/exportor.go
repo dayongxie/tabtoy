@@ -9,6 +9,8 @@ import (
 	"github.com/davyxu/tabtoy/v2/printer"
 )
 
+var ReserveTrimLevel int = 0
+
 func Run(g *printer.Globals) bool {
 
 	if !g.PreExport() {

@@ -175,8 +175,15 @@ func (self *DataHeader) addHeaderElement(he *DataHeaderElement, localFD *model.F
 
 	var errorPos int = -1
 
+	for i:=0; i < ReserveTrimLevel; i++ {
+		if strings.Index(def.Name, "#") == 0 {
+			def.Name = def.Name[1:]
+		}
+	}
+
 	// #开头表示注释, 跳过
-	if strings.Index(he.FieldName, "#") != 0 {
+	if strings.Index(def.Name, "#") != 0 {
+
 
 		errorPos = he.Parse(def, localFD, globalFD, self.HeaderByName)
 		if errorPos != -1 {

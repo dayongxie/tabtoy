@@ -14,6 +14,7 @@ var (
 	paramPara = flag.Bool("para", false, "parallel export by your cpu count")
 
 	paramLanguage = flag.String("lan", "en_us", "set output language")
+	paramReserveTrimLevel = flag.Int("reserve_level", 0, "reserve field column startwith #, 0 ignore #FieldName, 1 reserve #FiledName, 2 reserve ##FieldName, etc.")
 )
 
 // 文件类型导出

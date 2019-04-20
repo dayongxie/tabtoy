@@ -147,6 +147,14 @@ func (self *DataSheet) processLine(fieldDef *model.FieldDescriptor, line *model.
 		return lineOp_Break
 	}
 
+
+	for i:=0; i < ReserveTrimLevel; i++ {
+		if strings.Index(fieldDef.Name, "#") == 0 {
+			fieldDef.Name = fieldDef.Name[1:]
+		}
+	}
+
+
 	// #开头表示注释, 跳过
 	if strings.Index(fieldDef.Name, "#") == 0 {
 		return lineOp_Continue
@@ -184,6 +192,13 @@ func fieldDefGetter(index int, dataHeader, parentHeader *DataHeader) (*model.Fie
 	}
 
 	if parentHeader != nil {
+
+
+		for i:=0; i < ReserveTrimLevel; i++ {
+			if strings.Index(fieldDef.Name, "#") == 0 {
+				fieldDef.Name = fieldDef.Name[1:]
+			}
+		}
 
 		if strings.Index(fieldDef.Name, "#") == 0 {
 			return fieldDef, true
